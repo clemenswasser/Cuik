@@ -1,0 +1,5 @@
+add_executable(cuik_driver)
+target_compile_definitions(cuik_driver PRIVATE CUIK_ALLOW_THREADS $<$<TARGET_EXISTS:tb>:CUIK_USE_TB>)
+target_link_libraries(cuik_driver PRIVATE common cuik c11threads $<TARGET_NAME_IF_EXISTS:tb>)
+set_target_properties(cuik_driver PROPERTIES OUTPUT_NAME cuik)
+target_sources(cuik_driver PRIVATE main_driver.c)
